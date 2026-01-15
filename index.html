@@ -26,7 +26,7 @@
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Navigation -->
-    <nav id="navbar" class="navbar navbar-expand-lg" data-bs-theme="dark">
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top" data-bs-theme="dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo-sm-white.png" alt="Boardwalk Games logo" class="logo">
@@ -41,16 +41,19 @@
                         <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#events" class="nav-link">Events</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="game-library.html">Games</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a href="booking.html" class="btn btn-primary ms-lg-3">Book now</a>
+                        <a href="booking.html" class="btn custom-button-filled ms-lg-3">Book now</a>
                     </li>
                 </ul>
             </div>
@@ -68,7 +71,7 @@
                     café delights. Whether you're a casual gamer seeking a cosy nook to unwind, a board game enthusiast
                     ready for your next challenge, or a student gamer looking for a fun, affordable hangout, we've got
                     you covered.</p>
-                <a href="booking.html" class="btn btn-primary mb-4">Book now</a>
+                <a href="booking.html" class="btn custom-button-outline mb-4">Book now</a>
             </div>
             <div class="col-12 col-xl-6">
                 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -118,7 +121,6 @@
         <!-- Services section -->
         <section id="services" class="container section">
             <div class="row">
-
                 <div class="col-12 text-center">
                     <h2 class="display-6">Services</h2>
                 </div>
@@ -190,7 +192,59 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        <section id="events" class="container section">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="display-6 text-center">Join our events</h2>
+                </div>
 
+                <div class="col-12 col-xl-6">
+                    <p>Whether you're delving into dungeons, reliving classic games, or competing in high-stakes
+                        tournaments, there's something for every gamer. Reservations are recommended to ensure your spot
+                        at the table. Student discounts are available, so bring your student ID and enjoy more gaming
+                        for less.</p>
+                    <p>Outside scheduled events, our shop remains open for regular play. Join us anytime to discover new
+                        games and meet fellow enthusiasts.</p>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Event</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Price</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Dungeons & Dragons</th>
+                                <td>Tuesdays</td>
+                                <td>8pm - 11pm</td>
+                                <td>€25 for 6 sessions</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Retro Game Night</th>
+                                <td>Thursdays</td>
+                                <td>8pm - 11pm</td>
+                                <td>€5 per person*</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tournaments</th>
+                                <td>Last Sunday of the month</td>
+                                <td>12pm - 7pm</td>
+                                <td>€10 per person</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="student-discount text-center">*Get 20% off with valid student ID</p>
+                </div>
+                <div class="col-12 text-center">
+                    <a href="booking.html" class="btn custom-button-outline my-4">Book now</a>
+                </div>
             </div>
         </section>
     </main>
@@ -214,7 +268,7 @@
                     <p><i class="fa-solid fa-phone"></i> 012 345 6789<br>
                         <i class="fa-regular fa-paper-plane"></i> info@boardwalk-games.co
                     </p>
-                    <div class="social-links mt-4">
+                    <div class="social-links my-4">
                         <a href="https://www.instagram.com" target="_blank"
                             aria-label="Visit our Instagram page (opens in a new tab)" rel="noopener"><i
                                 class="fa-brands fa-instagram"></i></a>
@@ -228,7 +282,7 @@
 
                 <!-- Opening times -->
                 <div class="col-12 col-md-6 col-xl-4">
-                    <h3 class="sub-heading-color">Opening Times</h3>
+                    <h3 class="sub-heading-color">Opening times</h3>
                     <table class="table table-dark">
                         <thead>
                             <tr>
@@ -259,7 +313,6 @@
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -272,7 +325,27 @@
 
     <!-- Font Awesome kit -->
     <script src="https://kit.fontawesome.com/aa9af45995.js" crossorigin="anonymous"></script>
-
+    <!-- JavaScript code to ensure the Bootstrap mobile navbar collapses when navigating to in-page links -->
+    <script>
+        document
+            .querySelectorAll(".navbar-collapse .nav-link")
+            .forEach((link) => {
+                link.addEventListener("click", function (e) {
+                    let section = document.querySelector(e.target.getAttribute("href"));
+                    if (section) {
+                        e.preventDefault(); // Prevent default anchor click behavior
+                        let navbarHeight = document.querySelector(".navbar-toggler").offsetHeight;
+                        window.scroll({
+                            top: section.offsetTop - navbarHeight, // Adjust for navbar height
+                            behavior: "smooth",
+                        });
+                        document
+                            .querySelector(".navbar-collapse")
+                            .classList.remove("show"); // Collapse navbar
+                    }
+                });
+            });
+    </script>
 </body>
 
 </html>
